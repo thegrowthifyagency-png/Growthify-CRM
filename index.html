@@ -229,46 +229,21 @@ textarea{resize:vertical;min-height:70px}
         <div class="section-row">
           <div class="card">
             <div class="card-header"><span class="card-title">Leads by Source</span></div>
-            <div class="source-bar"><div class="source-label"><span>Google Business</span><span>8 leads</span></div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#378ADD"></div></div></div>
-            <div class="source-bar"><div class="source-label"><span>Facebook</span><span>5 leads</span></div><div class="bar-track"><div class="bar-fill" style="width:45%;background:#534AB7"></div></div></div>
-            <div class="source-bar"><div class="source-label"><span>WhatsApp</span><span>4 leads</span></div><div class="bar-track"><div class="bar-fill" style="width:35%;background:#0F6E56"></div></div></div>
-            <div class="source-bar"><div class="source-label"><span>LinkedIn</span><span>3 leads</span></div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#BA7517"></div></div></div>
-            <div class="source-bar"><div class="source-label"><span>Referral</span><span>2 leads</span></div><div class="bar-track"><div class="bar-fill" style="width:18%;background:#993C1D"></div></div></div>
-            <div class="source-bar"><div class="source-label"><span>Discord + Other</span><span>2 leads</span></div><div class="bar-track"><div class="bar-fill" style="width:15%;background:#993556"></div></div></div>
+            <div id="dashSourceBars"></div>
           </div>
           <div class="card">
             <div class="card-header"><span class="card-title">Team Leaderboard</span><span class="card-action" onclick="showPage('reports',null)">Full report →</span></div>
-            <div class="leaderboard-item">
-              <div class="rank-badge rank-1">1</div>
-              <div class="avatar" style="width:28px;height:28px;font-size:11px">JB</div>
-              <div class="member-info"><div class="member-name">Jibran</div><div class="member-stat">9 leads · 3 won</div></div>
-              <div class="member-won">$22k</div>
-            </div>
-            <div class="leaderboard-item">
-              <div class="rank-badge rank-2">2</div>
-              <div class="avatar" style="width:28px;height:28px;font-size:11px">SA</div>
-              <div class="member-info"><div class="member-name">Salman</div><div class="member-stat">8 leads · 2 won</div></div>
-              <div class="member-won">$16k</div>
-            </div>
-            <div class="leaderboard-item">
-              <div class="rank-badge rank-3">3</div>
-              <div class="avatar" style="width:28px;height:28px;font-size:11px">LT</div>
-              <div class="member-info"><div class="member-name">Lutfan</div><div class="member-stat">7 leads · 1 won</div></div>
-              <div class="member-won">$10k</div>
-            </div>
+            <div id="dashLeaderboard"></div>
           </div>
         </div>
         <div class="section-row">
           <div class="card">
-            <div class="card-header"><span class="card-title">Today's Follow-ups</span><span style="font-size:11px;background:var(--g-blue-light);color:var(--g-blue-dark);padding:2px 8px;border-radius:10px;font-weight:600">3 due</span></div>
-            <div class="today-item"><div><span class="time-tag">10:00 AM</span></div><div><div class="today-client">Ahmed Raza</div><div class="today-note">Google Ads proposal discussion</div></div></div>
-            <div class="today-item"><div><span class="time-tag">02:30 PM</span></div><div><div class="today-client">Sara Khan</div><div class="today-note">Website redesign follow-up</div></div></div>
-            <div class="today-item"><div><span class="time-tag">04:00 PM</span></div><div><div class="today-client">Bilal Corp</div><div class="today-note">Pricing discussion</div></div></div>
+            <div class="card-header"><span class="card-title">Today's Follow-ups</span><span id="dashTodayBadge" style="font-size:11px;background:var(--g-blue-light);color:var(--g-blue-dark);padding:2px 8px;border-radius:10px;font-weight:600">0 due</span></div>
+            <div id="dashToday"></div>
           </div>
           <div class="card">
-            <div class="card-header"><span class="card-title">Overdue Follow-ups</span><span style="font-size:11px;background:var(--g-red-light);color:var(--g-red);padding:2px 8px;border-radius:10px;font-weight:600">2 overdue</span></div>
-            <div class="overdue-item"><span class="overdue-days">3d ago</span><div><div class="today-client">Faisal Textiles</div><div class="today-note">SEO campaign proposal</div></div></div>
-            <div class="overdue-item"><span class="overdue-days">1d ago</span><div><div class="today-client">Zara Fashions</div><div class="today-note">Social media package</div></div></div>
+            <div class="card-header"><span class="card-title">Overdue Follow-ups</span><span id="dashOverdueBadge" style="font-size:11px;background:var(--g-red-light);color:var(--g-red);padding:2px 8px;border-radius:10px;font-weight:600">0 overdue</span></div>
+            <div id="dashOverdue"></div>
           </div>
         </div>
         <div class="card section-full">
@@ -306,15 +281,12 @@ textarea{resize:vertical;min-height:70px}
       <div class="page" id="page-followups">
         <div class="section-row" style="margin-bottom:16px">
           <div class="card">
-            <div class="card-header"><span class="card-title" style="color:var(--g-red)"><i class="ti ti-alarm"></i> Overdue</span><span style="background:var(--g-red-light);color:var(--g-red);font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600">2</span></div>
-            <div class="overdue-item"><span class="overdue-days">3d ago</span><div><div class="today-client">Faisal Textiles</div><div class="today-note">Assigned: Jibran · SEO campaign</div></div></div>
-            <div class="overdue-item"><span class="overdue-days">1d ago</span><div><div class="today-client">Zara Fashions</div><div class="today-note">Assigned: Salman · Social media</div></div></div>
+            <div class="card-header"><span class="card-title" style="color:var(--g-red)"><i class="ti ti-alarm"></i> Overdue</span><span id="fuOverdueBadge" style="background:var(--g-red-light);color:var(--g-red);font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600">0</span></div>
+            <div id="fuOverdueList"></div>
           </div>
           <div class="card">
-            <div class="card-header"><span class="card-title" style="color:var(--g-blue)"><i class="ti ti-calendar-check"></i> Today</span><span style="background:var(--g-blue-light);color:var(--g-blue-dark);font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600">3</span></div>
-            <div class="today-item"><span class="time-tag">10:00</span><div><div class="today-client">Ahmed Raza</div><div class="today-note">Assigned: Salman · Google Ads</div></div></div>
-            <div class="today-item"><span class="time-tag">14:30</span><div><div class="today-client">Sara Khan</div><div class="today-note">Assigned: Jibran · Web redesign</div></div></div>
-            <div class="today-item"><span class="time-tag">16:00</span><div><div class="today-client">Bilal Corp</div><div class="today-note">Assigned: Lutfan · Pricing</div></div></div>
+            <div class="card-header"><span class="card-title" style="color:var(--g-blue)"><i class="ti ti-calendar-check"></i> Today</span><span id="fuTodayBadge" style="background:var(--g-blue-light);color:var(--g-blue-dark);font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600">0</span></div>
+            <div id="fuTodayList"></div>
           </div>
         </div>
         <div class="card">
@@ -322,21 +294,13 @@ textarea{resize:vertical;min-height:70px}
           <div class="table-wrap">
             <table>
               <thead><tr><th>Client</th><th>Date</th><th>Time</th><th>Notes</th><th>Assigned</th><th>Status</th></tr></thead>
-              <tbody>
-                <tr><td><b>Ahmed Raza</b></td><td>Today</td><td>10:00 AM</td><td>Google Ads discussion</td><td><div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="width:22px;height:22px;font-size:9px">SA</div>Salman</div></td><td><span class="status-badge s-f1">Follow-up 1</span></td></tr>
-                <tr><td><b>Sara Khan</b></td><td>Today</td><td>02:30 PM</td><td>Website redesign</td><td><div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="width:22px;height:22px;font-size:9px">JB</div>Jibran</div></td><td><span class="status-badge s-f2">Follow-up 2</span></td></tr>
-                <tr><td><b>Noman Industries</b></td><td>Tomorrow</td><td>11:00 AM</td><td>Budget alignment call</td><td><div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="width:22px;height:22px;font-size:9px">LT</div>Lutfan</div></td><td><span class="status-badge s-new">New Lead</span></td></tr>
-                <tr><td><b>TechStart PK</b></td><td>Jun 20</td><td>03:00 PM</td><td>Final proposal review</td><td><div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="width:22px;height:22px;font-size:9px">SA</div>Salman</div></td><td><span class="status-badge s-last">Last Follow-up</span></td></tr>
-              </tbody>
+              <tbody id="fuUpcomingTable"></tbody>
             </table>
           </div>
         </div>
         <div class="card" style="margin-top:16px">
           <div class="card-header"><span class="card-title">Follow-up History Timeline</span></div>
-          <div class="timeline-item"><div class="timeline-dot" style="background:var(--g-green)"></div><div><div class="timeline-text"><b>Ahmed Raza</b> — Follow-up completed. Moved to Follow-up 2.</div><div class="timeline-time">Yesterday · 4:10 PM · Salman</div></div></div>
-          <div class="timeline-item"><div class="timeline-dot" style="background:var(--g-blue)"></div><div><div class="timeline-text"><b>Sara Khan</b> — Follow-up scheduled for today at 2:30 PM.</div><div class="timeline-time">2 days ago · Jibran</div></div></div>
-          <div class="timeline-item"><div class="timeline-dot" style="background:var(--g-amber)"></div><div><div class="timeline-text"><b>Faisal Textiles</b> — No response. Marked overdue.</div><div class="timeline-time">3 days ago · System</div></div></div>
-          <div class="timeline-item"><div class="timeline-dot" style="background:var(--g-green)"></div><div><div class="timeline-text"><b>Noman Industries</b> — Marked as Won Client. $12,000 deal closed.</div><div class="timeline-time">4 days ago · Jibran</div></div></div>
+          <div id="fuHistoryTimeline"></div>
         </div>
       </div>
 
@@ -369,18 +333,8 @@ textarea{resize:vertical;min-height:70px}
           <button class="export-btn" onclick="exportCSV()"><i class="ti ti-download"></i>Export</button>
         </div>
         <div class="card" id="reportContent">
-          <div class="card-header"><span class="card-title" id="reportTitle">Source-wise Performance Report</span><span style="font-size:11px;color:var(--text-tertiary)">June 2026</span></div>
-          <div class="table-wrap" id="reportTable">
-            <table><thead><tr><th>Source</th><th>Leads</th><th>Won</th><th>Lost</th><th>Conversion</th><th>Revenue</th></tr></thead>
-            <tbody>
-              <tr><td>Google Business Profile</td><td>8</td><td>3</td><td>1</td><td><span style="color:var(--g-green);font-weight:600">37.5%</span></td><td>$22,000</td></tr>
-              <tr><td>Facebook</td><td>5</td><td>1</td><td>2</td><td>20%</td><td>$8,000</td></tr>
-              <tr><td>WhatsApp</td><td>4</td><td>1</td><td>0</td><td>25%</td><td>$10,000</td></tr>
-              <tr><td>LinkedIn</td><td>3</td><td>1</td><td>0</td><td>33%</td><td>$8,000</td></tr>
-              <tr><td>Referral</td><td>2</td><td>0</td><td>1</td><td>0%</td><td>$0</td></tr>
-              <tr><td>Discord</td><td>2</td><td>0</td><td>0</td><td>0%</td><td>$0</td></tr>
-            </tbody></table>
-          </div>
+          <div class="card-header"><span class="card-title" id="reportTitle">Source-wise Performance Report</span><span style="font-size:11px;color:var(--text-tertiary)" id="reportDate"></span></div>
+          <div class="table-wrap" id="reportTable"></div>
         </div>
       </div>
 
@@ -396,12 +350,8 @@ textarea{resize:vertical;min-height:70px}
       <!-- NOTIFICATIONS -->
       <div class="page" id="page-notifications">
         <div class="card">
-          <div class="card-header"><span class="card-title">Notification Center</span><span class="card-action">Mark all read</span></div>
-          <div class="notif-item"><div class="notif-icon" style="background:var(--g-red-light)"><i class="ti ti-alarm" style="color:var(--g-red);font-size:16px"></i></div><div style="flex:1"><div class="notif-title">Follow-up Overdue</div><div class="notif-sub">Faisal Textiles — 3 days overdue · Assigned to Jibran</div></div><span class="notif-time">3d ago</span></div>
-          <div class="notif-item"><div class="notif-icon" style="background:var(--g-amber-light)"><i class="ti ti-clock" style="color:var(--g-amber);font-size:16px"></i></div><div style="flex:1"><div class="notif-title">Follow-up Due Today</div><div class="notif-sub">Ahmed Raza — 10:00 AM · Assigned to Salman</div></div><span class="notif-time">Today</span></div>
-          <div class="notif-item"><div class="notif-icon" style="background:var(--g-green-light)"><i class="ti ti-trophy" style="color:var(--g-green);font-size:16px"></i></div><div style="flex:1"><div class="notif-title">Won Client!</div><div class="notif-sub">Noman Industries closed — $12,000 · Jibran</div></div><span class="notif-time">2d ago</span></div>
-          <div class="notif-item"><div class="notif-icon" style="background:var(--g-blue-light)"><i class="ti ti-user-plus" style="color:var(--g-blue);font-size:16px"></i></div><div style="flex:1"><div class="notif-title">New Lead Assigned</div><div class="notif-sub">TechStart PK assigned to Salman via LinkedIn</div></div><span class="notif-time">3d ago</span></div>
-          <div class="notif-item"><div class="notif-icon" style="background:var(--g-purple-light)"><i class="ti ti-brand-whatsapp" style="color:var(--g-purple);font-size:16px"></i></div><div style="flex:1"><div class="notif-title">WhatsApp Quick Action</div><div class="notif-sub">Message sent to Sara Khan via WhatsApp</div></div><span class="notif-time">4d ago</span></div>
+          <div class="card-header"><span class="card-title">Notification Center</span><span class="card-action" onclick="clearNotifications()">Mark all read</span></div>
+          <div id="notifList"></div>
         </div>
       </div>
 
@@ -468,6 +418,7 @@ textarea{resize:vertical;min-height:70px}
       <div class="form-group"><label class="form-label">Assigned To</label><select id="f_assign"><option>Salman</option><option>Jibran</option><option>Lutfan</option></select></div>
       <div class="form-group"><label class="form-label">Status</label><select id="f_status"><option>New Lead</option><option>Follow-up 1</option><option>Follow-up 2</option><option>Follow-up 3</option><option>Last Follow-up</option><option>Won Client</option></select></div>
       <div class="form-group"><label class="form-label">Priority</label><select id="f_priority"><option>Medium</option><option>High</option><option>Low</option></select></div>
+      <div class="form-group"><label class="form-label">Deal Value ($)</label><input type="number" id="f_value" placeholder="0" min="0"></div>
       <div class="form-group"><label class="form-label">Follow-up Date</label><input type="date" id="f_date"></div>
       <div class="form-group"><label class="form-label">Follow-up Time</label><input type="time" id="f_time"></div>
       <div class="form-group full"><label class="form-label">Tags (comma separated)</label><input type="text" id="f_tags" placeholder="e.g. hot-lead, enterprise, urgent"></div>
@@ -482,25 +433,8 @@ textarea{resize:vertical;min-height:70px}
 
 <script>
 // ---- Default sample data (used only the very first time, before anything is saved) ----
-var defaultLeads=[
-  {id:1,name:'Ahmed Raza',company:'Raza Enterprises',phone:'+92 300 1234567',email:'ahmed@raza.pk',source:'Google Business Profile',status:'Follow-up 1',assign:'Salman',priority:'High',date:'2026-06-17',time:'10:00',notes:'Interested in Google Ads management.',tags:['hot-lead','google-ads'],created:'2026-06-10'},
-  {id:2,name:'Sara Khan',company:'Sara Designs',phone:'+92 321 9876543',email:'sara@designs.pk',source:'Facebook',status:'Follow-up 2',assign:'Jibran',priority:'High',date:'2026-06-17',time:'14:30',notes:'Wants full website redesign.',tags:['web','priority'],created:'2026-06-08'},
-  {id:3,name:'Faisal Textiles',company:'Faisal Group',phone:'+92 333 5551234',email:'faisal@textiles.pk',source:'LinkedIn',status:'Follow-up 3',assign:'Jibran',priority:'Medium',date:'2026-06-14',time:'11:00',notes:'SEO for ecommerce site.',tags:['seo','ecom'],created:'2026-06-05'},
-  {id:4,name:'Bilal Corp',company:'Bilal Corp Ltd',phone:'+92 345 7778899',email:'bilal@corp.pk',source:'WhatsApp',status:'Last Follow-up',assign:'Lutfan',priority:'High',date:'2026-06-17',time:'16:00',notes:'Pricing discussion pending.',tags:['urgent'],created:'2026-06-03'},
-  {id:5,name:'Noman Industries',company:'Noman Ind.',phone:'+92 300 2223344',email:'noman@ind.pk',source:'Referral',status:'Won Client',assign:'Jibran',priority:'Medium',date:'2026-06-20',time:'11:00',notes:'Closed. $12k monthly retainer.',tags:['won','retainer'],created:'2026-06-01'},
-  {id:6,name:'TechStart PK',company:'TechStart',phone:'+92 321 6667788',email:'info@techstart.pk',source:'LinkedIn',status:'New Lead',assign:'Salman',priority:'Medium',date:'2026-06-20',time:'15:00',notes:'Startup needing full digital setup.',tags:['startup'],created:'2026-06-15'},
-  {id:7,name:'Zara Fashions',company:'Zara PK',phone:'+92 333 9990011',email:'zara@fashion.pk',source:'Facebook',status:'Client Not Responding',assign:'Salman',priority:'Low',date:'2026-06-16',time:'12:00',notes:'No response for 1 day.',tags:['fashion'],created:'2026-06-07'},
-  {id:8,name:'Khan Associates',company:'Khan & Co',phone:'+92 345 1112233',email:'khan@associates.pk',source:'Google Business Profile',status:'Won Client',assign:'Salman',priority:'Low',date:'2026-06-25',time:'10:00',notes:'Closed. Social media package.',tags:['won'],created:'2026-05-28'},
-  {id:9,name:'Blue Ocean Tech',company:'Blue Ocean',phone:'+92 300 8889900',email:'hello@blueocean.pk',source:'Discord',status:'New Lead',assign:'Lutfan',priority:'Medium',date:'2026-06-22',time:'14:00',notes:'Discord community lead.',tags:['tech'],created:'2026-06-14'},
-  {id:10,name:'Bright Smile Clinic',company:'Bright Smile',phone:'+92 321 4445566',email:'info@brightsmile.pk',source:'Google Business Profile',status:'Follow-up 1',assign:'Lutfan',priority:'High',date:'2026-06-18',time:'09:00',notes:'Medical clinic SEO.',tags:['medical','seo'],created:'2026-06-12'},
-];
-var defaultTasks=[
-  {id:1,text:'Send proposal to Ahmed Raza',done:false,priority:'High'},
-  {id:2,text:'Follow up with Sara Khan via WhatsApp',done:false,priority:'Medium'},
-  {id:3,text:'Prepare monthly report for Jibran',done:true,priority:'Low'},
-  {id:4,text:'Update CRM with Bilal Corp notes',done:false,priority:'High'},
-  {id:5,text:'Call Noman Industries for referral',done:true,priority:'Medium'},
-];
+var defaultLeads=[];
+var defaultTasks=[];
 
 // ---- Persistence layer (localStorage) ----
 var STORAGE_KEY='growthify_crm_data_v1';
@@ -514,7 +448,7 @@ function loadFromStorage(){
     }
   }catch(e){console.error('Could not load saved CRM data, starting fresh.',e);}
   // First-ever run (or corrupted data): fall back to sample data
-  return {leads:defaultLeads,tasks:defaultTasks,nextId:11};
+  return {leads:defaultLeads,tasks:defaultTasks,nextId:1};
 }
 
 function saveToStorage(){
@@ -533,7 +467,7 @@ var nextId=__initial.nextId;
 
 // ---- Backup: export everything to a JSON file ----
 function exportBackup(){
-  var data={leads:leads,tasks:tasks,nextId:nextId,exportedAt:new Date().toISOString()};
+  var data={leads:leads,tasks:tasks,nextId:nextId,activityLog:activityLog,exportedAt:new Date().toISOString()};
   var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   var url=URL.createObjectURL(blob);
   var a=document.createElement('a');
@@ -556,8 +490,10 @@ function importBackup(input){
       leads=data.leads||[];
       tasks=data.tasks||[];
       nextId=data.nextId||(leads.reduce(function(m,l){return Math.max(m,l.id||0);},0)+1);
+      activityLog=data.activityLog||[];
       saveToStorage();
-      renderLeads(leads);renderPipeline();updateKPIs();renderTasks();
+      saveActivity(activityLog);
+      renderLeads(leads);renderPipeline();updateKPIs();renderTasks();renderDashboardExtras();renderNotifications();renderDashChart();
       alert('Backup restored successfully.');
     }catch(err){
       alert('Could not read this backup file. Please make sure it is a valid Growthify CRM backup JSON.');
@@ -567,9 +503,173 @@ function importBackup(input){
   reader.readAsText(file);
 }
 
-function statusClass(s){var m={'New Lead':'s-new','Follow-up 1':'s-f1','Follow-up 2':'s-f2','Follow-up 3':'s-f3','Last Follow-up':'s-last','Client Not Responding':'s-nr','Client Not Interested':'s-ni','Client Dead':'s-dead','Won Client':'s-won'};return m[s]||'s-new';}
-function priorityClass(p){return p==='High'?'p-high':p==='Low'?'p-low':'p-med';}
-function getInitials(n){var p=n.split(' ');return p.length>1?p[0][0]+p[1][0]:n.slice(0,2);}
+function emptyTableRow(cols,msg){
+  return '<table><tbody><tr><td colspan="'+cols+'" style="text-align:center;padding:30px;color:var(--text-tertiary)"><i class="ti ti-mood-empty" style="font-size:24px;display:block;margin-bottom:6px"></i>'+(msg||'No data yet')+'</td></tr></tbody></table>';
+}
+
+function emptyBlock(msg,icon){
+  return '<div style="text-align:center;padding:24px 10px;color:var(--text-tertiary)"><i class="ti '+(icon||'ti-mood-empty')+'" style="font-size:24px;display:block;margin-bottom:6px"></i>'+msg+'</div>';
+}
+
+// ---- Activity log (powers Notifications page) ----
+var ACTIVITY_KEY='growthify_crm_activity_v1';
+var activityIcons={
+  lead_added:{bg:'var(--g-blue-light)',color:'var(--g-blue)',icon:'ti-user-plus'},
+  lead_deleted:{bg:'var(--g-red-light)',color:'var(--g-red)',icon:'ti-trash'},
+  status_changed:{bg:'var(--g-amber-light)',color:'var(--g-amber)',icon:'ti-arrow-right-circle'},
+  won:{bg:'var(--g-green-light)',color:'var(--g-green)',icon:'ti-trophy'},
+  whatsapp:{bg:'var(--g-purple-light)',color:'var(--g-purple)',icon:'ti-brand-whatsapp'}
+};
+
+function loadActivity(){
+  try{var raw=localStorage.getItem(ACTIVITY_KEY);return raw?JSON.parse(raw):[];}catch(e){return [];}
+}
+function saveActivity(list){try{localStorage.setItem(ACTIVITY_KEY,JSON.stringify(list));}catch(e){}}
+var activityLog=loadActivity();
+
+function logActivity(type,text){
+  activityLog.unshift({type:type,text:text,time:new Date().toISOString()});
+  if(activityLog.length>50)activityLog=activityLog.slice(0,50);
+  saveActivity(activityLog);
+  renderNotifications();
+}
+
+function clearNotifications(){activityLog=[];saveActivity(activityLog);renderNotifications();}
+
+function timeAgo(iso){
+  var diff=Date.now()-new Date(iso).getTime();
+  var mins=Math.floor(diff/60000);
+  if(mins<1)return 'just now';
+  if(mins<60)return mins+'m ago';
+  var hrs=Math.floor(mins/60);
+  if(hrs<24)return hrs+'h ago';
+  var days=Math.floor(hrs/24);
+  return days+'d ago';
+}
+
+function renderNotifications(){
+  var el=document.getElementById('notifList');
+  if(!el)return;
+  if(activityLog.length===0){el.innerHTML=emptyBlock('No notifications yet — actions like adding leads or marking clients as won will show up here.');return;}
+  el.innerHTML=activityLog.map(function(a){
+    var ic=activityIcons[a.type]||activityIcons.lead_added;
+    return '<div class="notif-item"><div class="notif-icon" style="background:'+ic.bg+'"><i class="ti '+ic.icon+'" style="color:'+ic.color+';font-size:16px"></i></div><div style="flex:1"><div class="notif-sub">'+a.text+'</div></div><span class="notif-time">'+timeAgo(a.time)+'</span></div>';
+  }).join('');
+}
+
+// ---- Dashboard extras: source bars, leaderboard, today/overdue follow-ups ----
+function isOverdue(l){
+  if(!l.date||l.date==='TBD')return false;
+  if(['Won Client','Client Not Responding','Client Not Interested','Client Dead'].indexOf(l.status)>-1)return false;
+  var today=new Date();today.setHours(0,0,0,0);
+  var d=new Date(l.date+'T00:00:00');
+  return d<today;
+}
+function isToday(l){
+  if(!l.date||l.date==='TBD')return false;
+  var today=new Date().toISOString().slice(0,10);
+  return l.date===today;
+}
+function daysOverdue(l){
+  var today=new Date();today.setHours(0,0,0,0);
+  var d=new Date(l.date+'T00:00:00');
+  return Math.floor((today-d)/86400000);
+}
+
+function renderDashboardExtras(){
+  var srcEl=document.getElementById('dashSourceBars');
+  if(srcEl){
+    if(leads.length===0){srcEl.innerHTML=emptyBlock('No leads yet','ti-chart-bar');}
+    else{
+      var sourceCounts={};
+      leads.forEach(function(l){sourceCounts[l.source]=(sourceCounts[l.source]||0)+1;});
+      var colors=['#378ADD','#534AB7','#0F6E56','#BA7517','#993C1D','#993556'];
+      var max=Math.max.apply(null,Object.values(sourceCounts));
+      var i=0;
+      srcEl.innerHTML=Object.keys(sourceCounts).sort(function(a,b){return sourceCounts[b]-sourceCounts[a];}).map(function(s){
+        var n=sourceCounts[s];var pct=Math.round(n/max*100);var c=colors[i++%colors.length];
+        return '<div class="source-bar"><div class="source-label"><span>'+s+'</span><span>'+n+' lead'+(n!==1?'s':'')+'</span></div><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+c+'"></div></div></div>';
+      }).join('');
+    }
+  }
+
+  var lbEl=document.getElementById('dashLeaderboard');
+  if(lbEl){
+    if(leads.length===0){lbEl.innerHTML=emptyBlock('No team activity yet','ti-trophy');}
+    else{
+      var team={};
+      leads.forEach(function(l){
+        if(!team[l.assign])team[l.assign]={total:0,won:0,revenue:0};
+        team[l.assign].total++;
+        if(l.status==='Won Client'){team[l.assign].won++;team[l.assign].revenue+=(l.value||0);}
+      });
+      var ranked=Object.keys(team).map(function(m){return {name:m,d:team[m]};}).sort(function(a,b){return b.d.total-a.d.total;});
+      lbEl.innerHTML=ranked.map(function(r,i){
+        return '<div class="leaderboard-item"><div class="rank-badge rank-'+(i+1<=3?i+1:3)+'">'+(i+1)+'</div><div class="avatar" style="width:28px;height:28px;font-size:11px">'+getInitials(r.name)+'</div><div class="member-info"><div class="member-name">'+r.name+'</div><div class="member-stat">'+r.d.total+' leads · '+r.d.won+' won</div></div><div class="member-won">$'+r.d.revenue.toLocaleString()+'</div></div>';
+      }).join('');
+    }
+  }
+
+  var todayEl=document.getElementById('dashToday');
+  var todayBadge=document.getElementById('dashTodayBadge');
+  if(todayEl){
+    var todayLeads=leads.filter(isToday);
+    if(todayBadge)todayBadge.textContent=todayLeads.length+' due';
+    todayEl.innerHTML=todayLeads.length?todayLeads.map(function(l){
+      return '<div class="today-item"><div><span class="time-tag">'+(l.time!=='—'?l.time:'TBD')+'</span></div><div><div class="today-client">'+l.name+'</div><div class="today-note">'+(l.notes||l.status)+'</div></div></div>';
+    }).join(''):emptyBlock('No follow-ups due today','ti-calendar-check');
+  }
+
+  var odEl=document.getElementById('dashOverdue');
+  var odBadge=document.getElementById('dashOverdueBadge');
+  if(odEl){
+    var odLeads=leads.filter(isOverdue);
+    if(odBadge)odBadge.textContent=odLeads.length+' overdue';
+    odEl.innerHTML=odLeads.length?odLeads.map(function(l){
+      return '<div class="overdue-item"><span class="overdue-days">'+daysOverdue(l)+'d ago</span><div><div class="today-client">'+l.name+'</div><div class="today-note">'+(l.notes||l.status)+'</div></div></div>';
+    }).join(''):emptyBlock('No overdue follow-ups','ti-circle-check');
+  }
+}
+
+// ---- Follow-up Manager page ----
+function renderFollowupManager(){
+  var odList=document.getElementById('fuOverdueList');
+  var odBadge=document.getElementById('fuOverdueBadge');
+  var odLeads=leads.filter(isOverdue);
+  if(odBadge)odBadge.textContent=odLeads.length;
+  if(odList)odList.innerHTML=odLeads.length?odLeads.map(function(l){
+    return '<div class="overdue-item"><span class="overdue-days">'+daysOverdue(l)+'d ago</span><div><div class="today-client">'+l.name+'</div><div class="today-note">Assigned: '+l.assign+' · '+l.status+'</div></div></div>';
+  }).join(''):emptyBlock('No overdue follow-ups','ti-circle-check');
+
+  var tdList=document.getElementById('fuTodayList');
+  var tdBadge=document.getElementById('fuTodayBadge');
+  var tdLeads=leads.filter(isToday);
+  if(tdBadge)tdBadge.textContent=tdLeads.length;
+  if(tdList)tdList.innerHTML=tdLeads.length?tdLeads.map(function(l){
+    return '<div class="today-item"><span class="time-tag">'+(l.time!=='—'?l.time:'TBD')+'</span><div><div class="today-client">'+l.name+'</div><div class="today-note">Assigned: '+l.assign+' · '+l.status+'</div></div></div>';
+  }).join(''):emptyBlock('No follow-ups due today','ti-calendar-check');
+
+  var upTable=document.getElementById('fuUpcomingTable');
+  if(upTable){
+    var upcoming=leads.filter(function(l){return l.date&&l.date!=='TBD'&&l.status!=='Won Client'&&['Client Not Responding','Client Not Interested','Client Dead'].indexOf(l.status)===-1;})
+      .sort(function(a,b){return a.date.localeCompare(b.date);});
+    upTable.innerHTML=upcoming.length?upcoming.map(function(l){
+      var dateLabel=l.date;
+      var today=new Date().toISOString().slice(0,10);
+      if(l.date===today)dateLabel='Today';
+      return '<tr><td><b>'+l.name+'</b></td><td>'+dateLabel+'</td><td>'+(l.time!=='—'?l.time:'TBD')+'</td><td>'+(l.notes||'—')+'</td><td><div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="width:22px;height:22px;font-size:9px">'+getInitials(l.assign)+'</div>'+l.assign+'</div></td><td><span class="status-badge '+statusClass(l.status)+'">'+l.status+'</span></td></tr>';
+    }).join(''):'<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text-tertiary)"><i class="ti ti-mood-empty" style="font-size:24px;display:block;margin-bottom:6px"></i>No upcoming follow-ups</td></tr>';
+  }
+
+  var histEl=document.getElementById('fuHistoryTimeline');
+  if(histEl){
+    var histItems=activityLog.slice(0,8);
+    histEl.innerHTML=histItems.length?histItems.map(function(a){
+      var ic=activityIcons[a.type]||activityIcons.lead_added;
+      return '<div class="timeline-item"><div class="timeline-dot" style="background:'+ic.color+'"></div><div><div class="timeline-text">'+a.text+'</div><div class="timeline-time">'+timeAgo(a.time)+'</div></div></div>';
+    }).join(''):emptyBlock('No follow-up history yet','ti-history');
+  }
+}
 
 function updateKPIs(){
   var total=leads.length;
@@ -644,7 +744,13 @@ function renderPipeline(){
       e.preventDefault();col.classList.remove('drop-zone-active');
       var id=parseInt(e.dataTransfer.getData('leadId'));
       var lead=leads.find(function(l){return l.id===id;});
-      if(lead&&lead.status!==col.dataset.status){lead.status=col.dataset.status;renderPipeline();updateKPIs();}
+      if(lead&&lead.status!==col.dataset.status){
+        var oldStatus=lead.status;
+        lead.status=col.dataset.status;
+        if(lead.status==='Won Client'){logActivity('won',lead.name+' marked as Won Client'+(lead.value?' — $'+lead.value.toLocaleString():''));}
+        else{logActivity('status_changed',lead.name+' moved from '+oldStatus+' to '+lead.status);}
+        saveToStorage();renderPipeline();updateKPIs();renderDashboardExtras();
+      }
     });
     board.appendChild(col);
   });
@@ -670,19 +776,27 @@ function saveLead(){
   var phone=document.getElementById('f_phone').value.trim();
   if(!name||!phone){alert('Client name and phone are required.');return;}
   var tags=document.getElementById('f_tags').value?document.getElementById('f_tags').value.split(',').map(function(t){return t.trim();}).filter(Boolean):[];
-  leads.unshift({id:nextId++,name:name,company:document.getElementById('f_company').value||'—',phone:phone,email:document.getElementById('f_email').value||'—',source:document.getElementById('f_source').value,status:document.getElementById('f_status').value,assign:document.getElementById('f_assign').value,priority:document.getElementById('f_priority').value,date:document.getElementById('f_date').value||'TBD',time:document.getElementById('f_time').value||'—',notes:document.getElementById('f_notes').value||'',tags:tags,created:new Date().toISOString().slice(0,10)});
+  leads.unshift({id:nextId++,name:name,company:document.getElementById('f_company').value||'—',phone:phone,email:document.getElementById('f_email').value||'—',source:document.getElementById('f_source').value,status:document.getElementById('f_status').value,assign:document.getElementById('f_assign').value,priority:document.getElementById('f_priority').value,value:parseFloat(document.getElementById('f_value').value)||0,date:document.getElementById('f_date').value||'TBD',time:document.getElementById('f_time').value||'—',notes:document.getElementById('f_notes').value||'',tags:tags,created:new Date().toISOString().slice(0,10)});
+  logActivity('lead_added',name+' added as a new lead via '+document.getElementById('f_source').value);
   saveToStorage();
-  closeModal(null);renderLeads(leads);renderPipeline();updateKPIs();
-  ['f_name','f_company','f_phone','f_email','f_tags','f_notes','f_date','f_time'].forEach(function(id){document.getElementById(id).value='';});
+  closeModal(null);renderLeads(leads);renderPipeline();updateKPIs();renderDashboardExtras();
+  ['f_name','f_company','f_phone','f_email','f_tags','f_notes','f_date','f_time','f_value'].forEach(function(id){document.getElementById(id).value='';});
 }
 
-function deleteLead(id){if(confirm('Delete this lead? This cannot be undone.')){leads=leads.filter(function(l){return l.id!==id;});saveToStorage();renderLeads(leads);renderPipeline();updateKPIs();}}
-function editLead(id){var l=leads.find(function(x){return x.id===id;});if(l){openModal();document.getElementById('f_name').value=l.name;document.getElementById('f_company').value=l.company;document.getElementById('f_phone').value=l.phone;document.getElementById('f_email').value=l.email;document.getElementById('f_notes').value=l.notes;document.getElementById('f_tags').value=l.tags.join(', ');}}
-function waAction(id){var l=leads.find(function(x){return x.id===id;});if(l){var num=l.phone.replace(/\D/g,'');window.open('https://wa.me/'+num,'_blank');}}
+function deleteLead(id){
+  var l=leads.find(function(x){return x.id===id;});
+  if(confirm('Delete this lead? This cannot be undone.')){
+    leads=leads.filter(function(x){return x.id!==id;});
+    if(l)logActivity('lead_deleted',l.name+' was deleted');
+    saveToStorage();renderLeads(leads);renderPipeline();updateKPIs();renderDashboardExtras();
+  }
+}
+function editLead(id){var l=leads.find(function(x){return x.id===id;});if(l){openModal();document.getElementById('f_name').value=l.name;document.getElementById('f_company').value=l.company;document.getElementById('f_phone').value=l.phone;document.getElementById('f_email').value=l.email;document.getElementById('f_notes').value=l.notes;document.getElementById('f_tags').value=l.tags.join(', ');document.getElementById('f_value').value=l.value||0;document.getElementById('f_source').value=l.source;document.getElementById('f_assign').value=l.assign;document.getElementById('f_status').value=l.status;document.getElementById('f_priority').value=l.priority;document.getElementById('f_date').value=l.date!=='TBD'?l.date:'';document.getElementById('f_time').value=l.time!=='—'?l.time:'';}}
+function waAction(id){var l=leads.find(function(x){return x.id===id;});if(l){var num=l.phone.replace(/\D/g,'');logActivity('whatsapp','Message sent to '+l.name+' via WhatsApp');saveActivity(activityLog);window.open('https://wa.me/'+num,'_blank');}}
 
 function exportCSV(){
-  var rows=[['ID','Name','Company','Phone','Email','Source','Status','Assigned','Priority','Follow-up Date','Follow-up Time','Notes','Tags','Created']];
-  leads.forEach(function(l){rows.push([l.id,l.name,l.company,l.phone,l.email,l.source,l.status,l.assign,l.priority,l.date,l.time,l.notes,l.tags.join('|'),l.created]);});
+  var rows=[['ID','Name','Company','Phone','Email','Source','Status','Assigned','Priority','Deal Value','Follow-up Date','Follow-up Time','Notes','Tags','Created']];
+  leads.forEach(function(l){rows.push([l.id,l.name,l.company,l.phone,l.email,l.source,l.status,l.assign,l.priority,l.value||0,l.date,l.time,l.notes,l.tags.join('|'),l.created]);});
   var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
   var a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);a.download='growthify_leads_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
 }
@@ -698,6 +812,9 @@ function showPage(id,navEl){
   if(id==='leads')renderLeads(leads);
   if(id==='pipeline')renderPipeline();
   if(id==='tasks')renderTasks();
+  if(id==='followups')renderFollowupManager();
+  if(id==='notifications')renderNotifications();
+  if(id==='reports')setReport('source');
   if(id==='analytics')setTimeout(renderAnalyticsCharts,80);
 }
 
@@ -708,36 +825,176 @@ function toggleDark(){
   document.querySelectorAll('.toggle-sw').forEach(function(t){t.classList.toggle('on',dark);});
 }
 
+function statusClass(s){var m={'New Lead':'s-new','Follow-up 1':'s-f1','Follow-up 2':'s-f2','Follow-up 3':'s-f3','Last Follow-up':'s-last','Client Not Responding':'s-nr','Client Not Interested':'s-ni','Client Dead':'s-dead','Won Client':'s-won'};return m[s]||'s-new';}
+function priorityClass(p){return p==='High'?'p-high':p==='Low'?'p-low':'p-med';}
+function getInitials(n){var p=n.split(' ');return p.length>1?p[0][0]+p[1][0]:n.slice(0,2);}
+
 function setReport(type){
   var titles={source:'Source-wise Performance Report',team:'Team Performance Report',conversion:'Conversion Report',monthly:'Monthly Sales Report',lost:'Lost Lead Analysis'};
   document.getElementById('reportTitle').textContent=titles[type];
-  var tbl={
-    source:'<table><thead><tr><th>Source</th><th>Leads</th><th>Won</th><th>Lost</th><th>Conversion</th><th>Revenue</th></tr></thead><tbody><tr><td>Google Business Profile</td><td>8</td><td>3</td><td>1</td><td><span style="color:var(--g-green);font-weight:600">37.5%</span></td><td>$22,000</td></tr><tr><td>Facebook</td><td>5</td><td>1</td><td>2</td><td>20%</td><td>$8,000</td></tr><tr><td>WhatsApp</td><td>4</td><td>1</td><td>0</td><td>25%</td><td>$10,000</td></tr><tr><td>LinkedIn</td><td>3</td><td>1</td><td>0</td><td>33%</td><td>$8,000</td></tr><tr><td>Referral</td><td>2</td><td>0</td><td>1</td><td>0%</td><td>$0</td></tr></tbody></table>',
-    team:'<table><thead><tr><th>Member</th><th>Leads</th><th>Won</th><th>Lost</th><th>Active</th><th>Conversion</th><th>Revenue</th></tr></thead><tbody><tr><td><b>Jibran</b></td><td>9</td><td>3</td><td>1</td><td>5</td><td><span style="color:var(--g-green);font-weight:600">33%</span></td><td>$22k</td></tr><tr><td><b>Salman</b></td><td>8</td><td>2</td><td>2</td><td>4</td><td>25%</td><td>$16k</td></tr><tr><td><b>Lutfan</b></td><td>7</td><td>1</td><td>1</td><td>5</td><td>14%</td><td>$10k</td></tr></tbody></table>',
-    conversion:'<table><thead><tr><th>Stage</th><th>Leads</th><th>Drop-off</th><th>Rate</th></tr></thead><tbody><tr><td>New Lead</td><td>24</td><td>—</td><td>100%</td></tr><tr><td>Follow-up 1</td><td>18</td><td>6</td><td>75%</td></tr><tr><td>Follow-up 2</td><td>12</td><td>6</td><td>50%</td></tr><tr><td>Follow-up 3</td><td>8</td><td>4</td><td>33%</td></tr><tr><td>Won Client</td><td>6</td><td>2</td><td><span style="color:var(--g-green);font-weight:600">25%</span></td></tr></tbody></table>',
-    monthly:'<table><thead><tr><th>Month</th><th>Leads</th><th>Won</th><th>Revenue</th><th>Growth</th></tr></thead><tbody><tr><td>Jan 2026</td><td>8</td><td>1</td><td>$8,000</td><td>—</td></tr><tr><td>Feb 2026</td><td>10</td><td>2</td><td>$14,000</td><td><span style="color:var(--g-green)">↑ 75%</span></td></tr><tr><td>Mar 2026</td><td>12</td><td>2</td><td>$18,000</td><td><span style="color:var(--g-green)">↑ 29%</span></td></tr><tr><td>Apr 2026</td><td>15</td><td>3</td><td>$22,000</td><td><span style="color:var(--g-green)">↑ 22%</span></td></tr><tr><td>May 2026</td><td>18</td><td>4</td><td>$34,000</td><td><span style="color:var(--g-green)">↑ 55%</span></td></tr><tr><td>Jun 2026</td><td>24</td><td>6</td><td>$48,000</td><td><span style="color:var(--g-green)">↑ 41%</span></td></tr></tbody></table>',
-    lost:'<table><thead><tr><th>Lead</th><th>Source</th><th>Assigned</th><th>Stage Lost</th><th>Reason</th></tr></thead><tbody><tr><td>Zara Fashions</td><td>Facebook</td><td>Salman</td><td>Client Not Responding</td><td>No reply after 3 follow-ups</td></tr><tr><td>Old Brand PK</td><td>Discord</td><td>Lutfan</td><td>Client Not Interested</td><td>Budget too low</td></tr><tr><td>QuickFix Tech</td><td>Referral</td><td>Jibran</td><td>Client Dead</td><td>Project cancelled</td></tr></tbody></table>'
-  };
-  document.getElementById('reportTable').innerHTML=tbl[type]||tbl.source;
+  document.getElementById('reportDate').textContent=new Date().toLocaleString('en-US',{month:'long',year:'numeric'});
+  var lostStatuses=['Client Not Responding','Client Not Interested','Client Dead'];
+  var html='';
+
+  if(leads.length===0){
+    html=emptyTableRow(type==='conversion'?4:type==='lost'?5:6,'No leads yet — add a lead to see this report');
+    document.getElementById('reportTable').innerHTML=html;
+    return;
+  }
+
+  if(type==='source'){
+    var sources={};
+    leads.forEach(function(l){
+      if(!sources[l.source])sources[l.source]={total:0,won:0,lost:0,revenue:0};
+      sources[l.source].total++;
+      if(l.status==='Won Client'){sources[l.source].won++;sources[l.source].revenue+=(l.value||0);}
+      if(lostStatuses.indexOf(l.status)>-1)sources[l.source].lost++;
+    });
+    var rows=Object.keys(sources).map(function(s){
+      var d=sources[s];var conv=d.total>0?Math.round(d.won/d.total*100):0;
+      return '<tr><td>'+s+'</td><td>'+d.total+'</td><td>'+d.won+'</td><td>'+d.lost+'</td><td><span style="color:'+(conv>=25?'var(--g-green)':'var(--text-primary)')+';font-weight:600">'+conv+'%</span></td><td>$'+d.revenue.toLocaleString()+'</td></tr>';
+    }).join('');
+    html='<table><thead><tr><th>Source</th><th>Leads</th><th>Won</th><th>Lost</th><th>Conversion</th><th>Revenue</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  }
+
+  if(type==='team'){
+    var team={};
+    leads.forEach(function(l){
+      if(!team[l.assign])team[l.assign]={total:0,won:0,lost:0,active:0,revenue:0};
+      team[l.assign].total++;
+      if(l.status==='Won Client'){team[l.assign].won++;team[l.assign].revenue+=(l.value||0);}
+      else if(lostStatuses.indexOf(l.status)>-1)team[l.assign].lost++;
+      else team[l.assign].active++;
+    });
+    var rows=Object.keys(team).map(function(m){
+      var d=team[m];var conv=d.total>0?Math.round(d.won/d.total*100):0;
+      return '<tr><td><b>'+m+'</b></td><td>'+d.total+'</td><td>'+d.won+'</td><td>'+d.lost+'</td><td>'+d.active+'</td><td>'+conv+'%</td><td>$'+d.revenue.toLocaleString()+'</td></tr>';
+    }).join('');
+    html='<table><thead><tr><th>Member</th><th>Leads</th><th>Won</th><th>Lost</th><th>Active</th><th>Conversion</th><th>Revenue</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  }
+
+  if(type==='conversion'){
+    var stages=['New Lead','Follow-up 1','Follow-up 2','Follow-up 3','Last Follow-up','Won Client'];
+    var counts=stages.map(function(s){return leads.filter(function(l){return l.status===s;}).length;});
+    var total=leads.length;
+    var rows=stages.map(function(s,i){
+      var rate=total>0?Math.round(counts[i]/total*100):0;
+      return '<tr><td>'+s+'</td><td>'+counts[i]+'</td><td>—</td><td>'+(s==='Won Client'?'<span style="color:var(--g-green);font-weight:600">':'')+rate+'%'+(s==='Won Client'?'</span>':'')+'</td></tr>';
+    }).join('');
+    html='<table><thead><tr><th>Stage</th><th>Leads</th><th>Drop-off</th><th>Rate</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  }
+
+  if(type==='monthly'){
+    var months={};
+    leads.forEach(function(l){
+      var m=(l.created||'').slice(0,7);
+      if(!m)return;
+      if(!months[m])months[m]={leads:0,won:0,revenue:0};
+      months[m].leads++;
+      if(l.status==='Won Client'){months[m].won++;months[m].revenue+=(l.value||0);}
+    });
+    var keys=Object.keys(months).sort();
+    var rows=keys.map(function(k){
+      var d=months[k];var label=new Date(k+'-01').toLocaleString('en-US',{month:'short',year:'numeric'});
+      return '<tr><td>'+label+'</td><td>'+d.leads+'</td><td>'+d.won+'</td><td>$'+d.revenue.toLocaleString()+'</td><td>—</td></tr>';
+    }).join('');
+    html=keys.length?'<table><thead><tr><th>Month</th><th>Leads</th><th>Won</th><th>Revenue</th><th>Growth</th></tr></thead><tbody>'+rows+'</tbody></table>':emptyTableRow(5,'No leads yet');
+  }
+
+  if(type==='lost'){
+    var lostLeads=leads.filter(function(l){return lostStatuses.indexOf(l.status)>-1;});
+    var rows=lostLeads.map(function(l){
+      return '<tr><td>'+l.name+'</td><td>'+l.source+'</td><td>'+l.assign+'</td><td>'+l.status+'</td><td>'+(l.notes||'—')+'</td></tr>';
+    }).join('');
+    html=lostLeads.length?'<table><thead><tr><th>Lead</th><th>Source</th><th>Assigned</th><th>Stage Lost</th><th>Reason</th></tr></thead><tbody>'+rows+'</tbody></table>':emptyTableRow(5,'No lost leads — great job!');
+  }
+
+  document.getElementById('reportTable').innerHTML=html;
 }
 
-var chartsBuilt=false;
+var analyticsChartInstances=[];
+function destroyAnalyticsCharts(){
+  analyticsChartInstances.forEach(function(c){if(c)c.destroy();});
+  analyticsChartInstances=[];
+}
+
 function renderAnalyticsCharts(){
-  if(chartsBuilt)return;chartsBuilt=true;
-  var months=['Jan','Feb','Mar','Apr','May','Jun'];
-  new Chart(document.getElementById('trendChart'),{type:'line',data:{labels:months,datasets:[{label:'Leads',data:[8,10,12,15,18,24],borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.08)',fill:true,tension:.4,pointBackgroundColor:'#378ADD',pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(128,128,128,0.1)'}}}}});
-  new Chart(document.getElementById('statusChart'),{type:'doughnut',data:{labels:['New Lead','Follow-up','Won','Not Responding','Other'],datasets:[{data:[7,11,6,3,2],backgroundColor:['#378ADD','#0F6E56','#3B6D11','#888780','#993C1D'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12,padding:8}}}}});
-  new Chart(document.getElementById('sourceChart'),{type:'bar',data:{labels:['Google','Facebook','WhatsApp','LinkedIn','Referral','Discord'],datasets:[{label:'Leads',data:[8,5,4,3,2,2],backgroundColor:['#378ADD','#534AB7','#0F6E56','#BA7517','#993C1D','#993556'],borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(128,128,128,0.1)'}}}}});
-  new Chart(document.getElementById('teamChart'),{type:'bar',data:{labels:['Jibran','Salman','Lutfan'],datasets:[{label:'Total Leads',data:[9,8,7],backgroundColor:'rgba(55,138,221,0.25)',borderRadius:5,borderSkipped:false},{label:'Won',data:[3,2,1],backgroundColor:'#3B6D11',borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:10}}},scales:{y:{beginAtZero:true,grid:{color:'rgba(128,128,128,0.1)'}}}}});
+  destroyAnalyticsCharts();
+  var monthly=getMonthlyChartData();
+  var hasData=leads.length>0;
+
+  var statusGroups={'New Lead':0,'Follow-up':0,'Won':0,'Not Responding':0,'Other':0};
+  leads.forEach(function(l){
+    if(l.status==='New Lead')statusGroups['New Lead']++;
+    else if(['Follow-up 1','Follow-up 2','Follow-up 3','Last Follow-up'].indexOf(l.status)>-1)statusGroups['Follow-up']++;
+    else if(l.status==='Won Client')statusGroups['Won']++;
+    else if(l.status==='Client Not Responding')statusGroups['Not Responding']++;
+    else statusGroups['Other']++;
+  });
+
+  var sourceCounts={};
+  leads.forEach(function(l){sourceCounts[l.source]=(sourceCounts[l.source]||0)+1;});
+  var sourceKeys=Object.keys(sourceCounts);
+
+  var teamCounts={};
+  leads.forEach(function(l){
+    if(!teamCounts[l.assign])teamCounts[l.assign]={total:0,won:0};
+    teamCounts[l.assign].total++;
+    if(l.status==='Won Client')teamCounts[l.assign].won++;
+  });
+  var teamKeys=Object.keys(teamCounts);
+
+  analyticsChartInstances.push(new Chart(document.getElementById('trendChart'),{type:'line',data:{labels:hasData?monthly.labels:['No data'],datasets:[{label:'Leads',data:hasData?monthly.leads:[0],borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.08)',fill:true,tension:.4,pointBackgroundColor:'#378ADD',pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(128,128,128,0.1)'}}}}}));
+
+  analyticsChartInstances.push(new Chart(document.getElementById('statusChart'),{type:'doughnut',data:{labels:Object.keys(statusGroups),datasets:[{data:Object.values(statusGroups),backgroundColor:['#378ADD','#0F6E56','#3B6D11','#888780','#993C1D'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12,padding:8}}}}}));
+
+  analyticsChartInstances.push(new Chart(document.getElementById('sourceChart'),{type:'bar',data:{labels:sourceKeys.length?sourceKeys:['No data'],datasets:[{label:'Leads',data:sourceKeys.length?sourceKeys.map(function(k){return sourceCounts[k];}):[0],backgroundColor:['#378ADD','#534AB7','#0F6E56','#BA7517','#993C1D','#993556'],borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(128,128,128,0.1)'}}}}}));
+
+  analyticsChartInstances.push(new Chart(document.getElementById('teamChart'),{type:'bar',data:{labels:teamKeys.length?teamKeys:['No data'],datasets:[{label:'Total Leads',data:teamKeys.length?teamKeys.map(function(k){return teamCounts[k].total;}):[0],backgroundColor:'rgba(55,138,221,0.25)',borderRadius:5,borderSkipped:false},{label:'Won',data:teamKeys.length?teamKeys.map(function(k){return teamCounts[k].won;}):[0],backgroundColor:'#3B6D11',borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:10}}},scales:{y:{beginAtZero:true,grid:{color:'rgba(128,128,128,0.1)'}}}}}));
+}
+
+function getMonthlyChartData(){
+  var months={};
+  leads.forEach(function(l){
+    var m=(l.created||'').slice(0,7);
+    if(!m)return;
+    if(!months[m])months[m]={leads:0,revenue:0};
+    months[m].leads++;
+    if(l.status==='Won Client')months[m].revenue+=(l.value||0);
+  });
+  var keys=Object.keys(months).sort();
+  return {
+    labels:keys.map(function(k){return new Date(k+'-01').toLocaleString('en-US',{month:'short'});}),
+    leads:keys.map(function(k){return months[k].leads;}),
+    revenue:keys.map(function(k){return Math.round(months[k].revenue/1000);})
+  };
+}
+
+var dashChartInstance=null;
+function renderDashChart(){
+  var canvas=document.getElementById('dashChart');
+  if(!canvas)return;
+  if(dashChartInstance){dashChartInstance.destroy();dashChartInstance=null;}
+  var d=getMonthlyChartData();
+  if(d.labels.length===0){
+    var ctx=canvas.getContext('2d');
+    if(ctx){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle='#9ca3af';ctx.font='13px sans-serif';ctx.textAlign='center';
+      ctx.fillText('No leads yet — chart will appear once you add leads',canvas.width/2,canvas.height/2);
+    }
+    return;
+  }
+  dashChartInstance=new Chart(canvas,{type:'bar',data:{labels:d.labels,datasets:[{label:'Leads',data:d.leads,backgroundColor:'rgba(55,138,221,0.2)',borderColor:'#378ADD',borderWidth:2,borderRadius:5,yAxisID:'y'},{type:'line',label:'Revenue $k',data:d.revenue,borderColor:'#3B6D11',backgroundColor:'transparent',tension:.4,pointBackgroundColor:'#3B6D11',pointRadius:4,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:10}}},scales:{y:{beginAtZero:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{font:{size:11}}},y1:{position:'right',beginAtZero:true,grid:{drawOnChartArea:false},ticks:{font:{size:11},callback:function(v){return'$'+v+'k';}}}}}});
 }
 
 window.addEventListener('load',function(){
   updateKPIs();
   renderLeads(leads);
   renderTasks();
-  setTimeout(function(){
-    new Chart(document.getElementById('dashChart'),{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[{label:'Leads',data:[8,10,12,15,18,24],backgroundColor:'rgba(55,138,221,0.2)',borderColor:'#378ADD',borderWidth:2,borderRadius:5,yAxisID:'y'},{type:'line',label:'Revenue $k',data:[8,14,18,22,34,48],borderColor:'#3B6D11',backgroundColor:'transparent',tension:.4,pointBackgroundColor:'#3B6D11',pointRadius:4,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:10}}},scales:{y:{beginAtZero:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{font:{size:11}}},y1:{position:'right',beginAtZero:true,grid:{drawOnChartArea:false},ticks:{font:{size:11},callback:function(v){return'$'+v+'k';}}}}}});
-  },150);
+  renderDashboardExtras();
+  renderNotifications();
+  setTimeout(renderDashChart,150);
 });
 </script>
 </body>
